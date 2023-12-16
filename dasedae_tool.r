@@ -70,9 +70,9 @@ model <- lm(guarantee~district+scale+build_age+banjiha+station_km+univ_km+gbd_km
 #모델4
 model <- lm(guarantee~scale+build_age+station_km+univ_km+district, train_df)
 summary(model)#잘 안나와도 예측모델이므로 RMSE만 잘 나오면 문제없음
-#table(is.na(dasedae$build_age))
-#dasedae <- dasedae[complete.cases(dasedae$build_age), ]
-#validation_df <- validation_df[complete.cases(dasedae$build_age), ]
+table(is.na(dasedae$build_age))
+dasedae <- dasedae[complete.cases(dasedae$build_age), ]
+validation_df <- validation_df[complete.cases(dasedae$build_age), ]
 validation_df$predicted <- predict(model, validation_df)
 validation_df$residuals <- validation_df$guarantee - validation_df$predicted
 #View(validation_df[,c("Id","Price","predicted", "residuals")])
